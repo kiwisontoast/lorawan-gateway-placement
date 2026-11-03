@@ -1,0 +1,23 @@
+{
+  "source": "https://www.wcs.nrw.de/geobasis/wcs_nw_dgm",
+  "coverage": "nw_dgm",
+  "request_url": "https://www.wcs.nrw.de/geobasis/wcs_nw_dgm?service=WCS&version=2.0.1&request=GetCoverage&coverageId=nw_dgm&format=image%2Ftiff&subset=x%28360140%2C373281%29&subset=y%285612252%2C5631435%29&scaleFactor=0.05",
+  "requested_bounds_epsg25832": [
+    360140,
+    5612252,
+    373281,
+    5631435
+  ],
+  "width": 657,
+  "height": 959,
+  "resolution_m": [
+    20.0015243902439,
+    20.00313152400835
+  ],
+  "crs": "EPSG:25832",
+  "nodata": -9999.0,
+  "bytes": 1617902,
+  "source_model": "DGM1 downsampled by WCS factor 0.05",
+  "licence": "Data licence Germany zero 2.0; see NRW product metadata",
+  "note": "Current service data; acquisition dates may differ from 2020-2021 survey."
+}

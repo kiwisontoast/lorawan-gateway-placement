@@ -1,0 +1,14 @@
+{
+  "source": "https://www.wcs.nrw.de/geobasis/wcs_nw_dom",
+  "request_url": "https://www.wcs.nrw.de/geobasis/wcs_nw_dom?service=WCS&version=2.0.1&request=GetCoverage&coverageId=nw_dom&format=image%2Ftiff&subset=x%28360140%2C373281%29&subset=y%285612252%2C5631435%29&scaleFactor=0.05",
+  "coverage": "nw_dom",
+  "bytes": 2522584,
+  "resolution_m": [
+    20.0015243902439,
+    20.00313152400835
+  ],
+  "crs": "EPSG:25832",
+  "nodata": null,
+  "licence": "Data licence Germany zero 2.0",
+  "note": "Current surface data; acquisition dates not matched to 2020-21 survey."
+}

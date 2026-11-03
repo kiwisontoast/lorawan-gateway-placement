@@ -1,0 +1,14 @@
+{
+  "source": "https://overpass-api.de/api/interpreter",
+  "bbox_south_west_north_east": [
+    50.647634,
+    7.016281,
+    50.819726,
+    7.2034579999999995
+  ],
+  "query": "[out:json][timeout:180];(way[\"building\"](50.647634,7.016281,50.819726,7.2034579999999995);relation[\"building\"][\"type\"=\"multipolygon\"](50.647634,7.016281,50.819726,7.2034579999999995););out center tags;",
+  "osm_base_time": "2026-10-31T21:06:01Z",
+  "licence": "ODbL 1.0",
+  "attribution": "\u00a9 OpenStreetMap contributors",
+  "copyright_url": "https://www.openstreetmap.org/copyright"
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "problem": "min_sites",
+    "status": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "success": true,
+    "baseline_covered_cells": 386,
+    "mip_gap": 0.0,
+    "selected_sites": 4,
+    "covered_cells": 394,
+    "covered_fraction": 0.9563106796116505
+  },
+  {
+    "problem": "max_coverage",
+    "status": 0,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "success": true,
+    "baseline_covered_cells": 386,
+    "mip_gap": 0.0,
+    "selected_sites": 4,
+    "covered_cells": 394,
+    "covered_fraction": 0.9563106796116505
+  }
+]

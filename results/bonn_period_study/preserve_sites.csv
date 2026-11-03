@@ -1,0 +1,9 @@
+problem,site_id
+min_sites_preserve,existing_06df
+min_sites_preserve,existing_08fc
+min_sites_preserve,existing_0917
+min_sites_preserve,osm_way_44314870
+max_coverage_preserve_budget4,existing_06df
+max_coverage_preserve_budget4,existing_08fc
+max_coverage_preserve_budget4,existing_0917
+max_coverage_preserve_budget4,osm_way_111856632

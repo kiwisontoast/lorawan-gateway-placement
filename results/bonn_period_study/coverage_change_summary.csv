@@ -1,0 +1,3 @@
+scenario,retained,gained,lost,uncovered,baseline_covered,new_covered
+max_coverage,366,14,3,9,369,380
+preserve_all,369,2,0,21,369,371

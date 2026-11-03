@@ -1,0 +1,32 @@
+{
+  "period_start": "2020-11-10",
+  "period_end": "2021-01-26",
+  "gateway_ids": [
+    "015c",
+    "0172",
+    "01c6",
+    "06df",
+    "08d5",
+    "08fc",
+    "090e",
+    "0917"
+  ],
+  "receptions": 54395,
+  "measurement_days": 56,
+  "days_with_receptions_by_gateway": {
+    "015c": 56,
+    "0172": 56,
+    "01c6": 56,
+    "06df": 56,
+    "08d5": 56,
+    "08fc": 56,
+    "090e": 56,
+    "0917": 56
+  },
+  "demand_cells": 392,
+  "candidate_sites": 59,
+  "initial_building_ways": 82,
+  "invalid_or_missing_ways": 0,
+  "building_ways_after_area_and_height_filters": 51,
+  "relations_excluded": 3
+}

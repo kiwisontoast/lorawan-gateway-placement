@@ -1,0 +1,18 @@
+status,message,optimal,mip_gap,selected_k,covered_cells,covered_fraction,height_offset_m,score_threshold,problem,budget,baseline_cells
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,387,0.987245,-2,0.300000,min_sites,,380
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,375,0.956633,-2,0.500000,min_sites,,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,340,0.867347,-2,0.700000,min_sites,,323
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,384,0.979592,0,0.300000,min_sites,,380
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,380,0.969388,0,0.500000,min_sites,,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,1,238,0.607143,0,0.500000,max_coverage,1.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,2,325,0.829082,0,0.500000,max_coverage,2.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,3,366,0.933673,0,0.500000,max_coverage,3.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,380,0.969388,0,0.500000,max_coverage,4.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,5,385,0.982143,0,0.500000,max_coverage,5.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,6,387,0.987245,0,0.500000,max_coverage,6.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,7,388,0.989796,0,0.500000,max_coverage,7.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,8,389,0.992347,0,0.500000,max_coverage,8.000000,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,340,0.867347,0,0.700000,min_sites,,323
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,387,0.987245,2,0.300000,min_sites,,380
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,380,0.969388,2,0.500000,min_sites,,369
+0,Optimization terminated successfully. (HiGHS Status 7: Optimal),True,0.000000,4,341,0.869898,2,0.700000,min_sites,,323

@@ -1,0 +1,17 @@
+{
+  "source": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v100/2020/map/ESA_WorldCover_10m_2020_v100_N48E006_Map.tif",
+  "product": "ESA WorldCover 10 m 2020 v100",
+  "licence": "CC BY 4.0",
+  "attribution": "(c) ESA WorldCover project 2020 / Contains modified Copernicus Sentinel data (2020)",
+  "resampling": "nearest neighbour onto the 2 m EPSG:25832 study grid",
+  "class_share": {
+    "tree cover": 0.4942,
+    "shrubland": 0.0,
+    "grassland": 0.1248,
+    "cropland": 0.1323,
+    "built-up": 0.2005,
+    "bare / sparse vegetation": 0.0068,
+    "permanent water": 0.0414,
+    "herbaceous wetland": 0.0
+  }
+}

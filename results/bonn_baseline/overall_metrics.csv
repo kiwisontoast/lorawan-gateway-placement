@@ -1,0 +1,3 @@
+model,n,mae_db,rmse_db,bias_db
+free_space,131057,39.705132,40.913233,39.705132
+log_distance,131057,8.444154,10.624654,-0.446916

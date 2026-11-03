@@ -1,0 +1,4 @@
+model,n,mae_db,rmse_db,bias_db
+log_distance,131057,8.444154,10.624654,-0.446916
+boosted_distance,131057,8.394774,10.561981,-0.394239
+boosted_distance_height,131057,7.570277,9.822462,-2.468209

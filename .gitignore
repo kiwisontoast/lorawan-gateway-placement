@@ -1,0 +1,21 @@
+# Cloned datasets (222 MB); re-clone with the commands in data/README.md
+data/lora-bonn/
+data/LoRa-RSSI-dataset-outdoor/
+
+# Downloaded or derived geodata; rebuild with the fetch_*.py scripts
+data/nrw1m/
+data/lod2/*.parquet
+data/lod2/*.tif
+data/derived/
+data/osm/bonn_buildings.json
+data/terrain/*_2m.tif
+
+# Row-level outputs (about 13 MB each) and the pickled model; regenerate with the scripts
+results/*/held_out_predictions.csv
+results/bonn_terrain/terrain_features.csv
+results/bonn_geoai/model.joblib
+
+# Project-local Python packages (187 MB) and caches
+.geo_deps/
+__pycache__/
+*.pyc

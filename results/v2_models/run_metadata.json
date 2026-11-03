@@ -1,0 +1,60 @@
+{
+  "labels": "same-day activity proxy; reception conditional on another gateway observing the packet",
+  "configs": [
+    [
+      "hgb",
+      "distance_height"
+    ],
+    [
+      "hgb",
+      "v1_20m"
+    ],
+    [
+      "lgbm",
+      "v1_20m"
+    ],
+    [
+      "lgbm",
+      "v2_terrain"
+    ],
+    [
+      "lgbm",
+      "v2_surface"
+    ],
+    [
+      "lgbm",
+      "v2_buildings"
+    ],
+    [
+      "lgbm",
+      "v2_full"
+    ],
+    [
+      "hgb",
+      "v2_full"
+    ],
+    [
+      "lgbm_mono",
+      "v2_full"
+    ],
+    [
+      "lgbm_mono",
+      "v2_site_agnostic"
+    ]
+  ],
+  "final_model": [
+    "lgbm_mono",
+    "v2_full"
+  ],
+  "monotone_constraints": {
+    "log_distance_km": -1,
+    "antenna_height": 1,
+    "terrain_diffraction_db": -1,
+    "surface_diffraction_db": -1,
+    "foliage_in_path_m": -1,
+    "buildings_blocking": -1
+  },
+  "footprint_threshold": 0.5,
+  "footprint_min_packets_per_cell": 5,
+  "lightgbm_version": "4.7.0"
+}

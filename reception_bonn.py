@@ -28,7 +28,7 @@ def model():
                                           early_stopping=False, random_state=42)
 
 
-def build_pairs(start_date=None, end_date=None, gateway_ids=None):
+def build_pairs(start_date=None, end_date=None, gateway_ids=None, with_features=True):
     s = pd.read_csv(SURVEY / 'samples.csv', dtype={'gw': str})
     if start_date is not None:
         s = s.loc[s.transceived_at >= start_date].copy()
@@ -70,6 +70,8 @@ def build_pairs(start_date=None, end_date=None, gateway_ids=None):
     if (dist <= 0).any():
         raise ValueError('Non-positive link distance')
     pairs['log_distance_km'] = np.log10(dist)
+    if not with_features:
+        return pairs
     print(f'Computing geographic features for {len(pairs):,} candidate links', flush=True)
     features = path_features(pairs)
     if features.isna().any().any():

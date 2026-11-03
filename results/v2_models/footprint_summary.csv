@@ -1,0 +1,9 @@
+model,features,prediction_basis,precision,recall,f1,iou,accuracy,cell_rate_mae
+hgb,distance_height,mean_p,0.7476,0.4817,0.4645,0.3199,0.7371,0.2477
+hgb,distance_height,rep_p,0.7341,0.4777,0.4504,0.3089,0.7295,0.2487
+hgb,v1_20m,mean_p,0.8188,0.6716,0.6771,0.5297,0.8245,0.1554
+hgb,v1_20m,rep_p,0.8065,0.6606,0.6650,0.5157,0.8178,0.1599
+lgbm,v2_full,mean_p,0.8293,0.7195,0.7257,0.5809,0.8534,0.1312
+lgbm,v2_full,rep_p,0.8005,0.7033,0.7063,0.5565,0.8430,0.1385
+lgbm_mono,v2_full,mean_p,0.8141,0.7210,0.7231,0.5760,0.8534,0.1300
+lgbm_mono,v2_full,rep_p,0.8016,0.7064,0.7141,0.5626,0.8512,0.1360

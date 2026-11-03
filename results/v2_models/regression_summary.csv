@@ -1,0 +1,5 @@
+model,features,pooled_mae_db,pooled_bias_db,mean_gateway_mae_db
+log_distance,distance,8.4445,-0.4472,8.0360
+hgb,v1_20m,6.8407,-2.3645,6.3779
+lgbm,v2_full,5.9145,-1.6482,5.6900
+lgbm_mono,v2_full,6.0754,-2.0592,5.7645

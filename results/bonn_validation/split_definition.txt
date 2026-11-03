@@ -1,0 +1,2 @@
+Four quadrants in EPSG:25832 at unique-position median easting 366218.44 m and northing 5621154.49 m.
+Temporal test: date >= 2021-01-08; earlier dates train.

@@ -1,0 +1,5 @@
+activity_scenario,model,gateways,test_pairs,test_received,test_inferred_misses,mean_gateway_auc,mean_gateway_brier,min_gateway_auc,max_gateway_auc
+in_range,distance_height,9,366097,114899,251198,0.821605,0.204671,0.717588,0.944009
+in_range,terrain_surface,9,366097,114899,251198,0.877817,0.144850,0.713662,0.957005
+same_day,distance_height,9,364740,114899,249841,0.819611,0.205163,0.710433,0.942385
+same_day,terrain_surface,9,364740,114899,249841,0.878554,0.145138,0.714206,0.956154

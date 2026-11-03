@@ -1,0 +1,11 @@
+split,model,train_receptions,test_gateways,train_gateways,n,mae_db,rmse_db,bias_db
+spatial_quadrant_0,log_distance,110884,9,9,20173,7.239212,8.882972,0.990561
+spatial_quadrant_0,boosted_terrain_surface,110884,9,9,20173,5.587428,7.207372,0.887455
+spatial_quadrant_1,log_distance,94546,9,9,36511,8.071764,9.867373,0.080478
+spatial_quadrant_1,boosted_terrain_surface,94546,9,9,36511,6.159851,7.964387,-0.705791
+spatial_quadrant_2,log_distance,72898,9,9,58159,8.294804,10.949580,-1.728584
+spatial_quadrant_2,boosted_terrain_surface,72898,9,9,58159,6.183901,8.189795,-2.562516
+spatial_quadrant_3,log_distance,114843,9,9,16214,7.329704,9.203028,-0.192468
+spatial_quadrant_3,boosted_terrain_surface,114843,9,9,16214,5.778598,7.227423,1.326902
+time_since_2021-01-08,log_distance,104885,8,9,26172,7.790839,9.659251,0.716159
+time_since_2021-01-08,boosted_terrain_surface,104885,8,9,26172,5.270845,6.842983,0.199313

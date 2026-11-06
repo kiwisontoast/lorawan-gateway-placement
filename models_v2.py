@@ -150,8 +150,8 @@ def demand_cells():
     return demand
 
 
-def footprint_test(pairs, demand, grids, configs, threshold=0.5, min_packets=5):
-    """Leave one gateway out of training, predict its cell footprint, compare to its receptions."""
+def period_pairs(pairs):
+    """Pairs of the eight-gateway period, with eligibility rebuilt and 500 m cell indices."""
     from placement_bonn import CELL_METRES
     period = pairs[pairs.transceived_at.between(START, END) & pairs.gw.isin(PERIOD_GATEWAYS)].copy()
     # Rebuild eligibility within the period-only, eight-gateway network.
@@ -164,6 +164,12 @@ def footprint_test(pairs, demand, grids, configs, threshold=0.5, min_packets=5):
     project = Transformer.from_crs(4326, 25832, always_xy=True)
     x, y = project.transform(period.longitude_sensor.to_numpy(), period.latitude_sensor.to_numpy())
     period['gx'], period['gy'] = np.floor(x / CELL_METRES).astype(int), np.floor(y / CELL_METRES).astype(int)
+    return period
+
+
+def footprint_test(pairs, demand, grids, configs, threshold=0.5, min_packets=5):
+    """Leave one gateway out of training, predict its cell footprint, compare to its receptions."""
+    period = period_pairs(pairs)
     gws = pd.read_csv(SURVEY / 'gateways.csv', dtype={'id': str}).set_index('id')
     rep = demand[['cell_id', 'gx', 'gy', 'longitude', 'latitude']]
     rows, cells_out = [], []

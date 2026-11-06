@@ -32,12 +32,24 @@ MAIN_THRESHOLD = 0.5
 REDUNDANCY = [1, 2]
 MAST_M = 15.0          # hypothetical pole height for grid and high-point sites (inside 12-30 m training range)
 TREE_COVER = 10        # WorldCover class
+CLUTTER_RADIUS_M = 50  # --clear-canopy: masts must top the 90th-percentile surface height within this radius
 ROOF_MAST_M = 2.0      # antenna above the highest LoD2 roof point
 ROOF_RANGE = (10, 28)  # roof height above ground: antenna stays within 12-30 m
 NEAR_DEMAND_M = 1000
 
 
-def candidates(demand, grids, mast_m=MAST_M, forest_hills=True):
+def clutter_p90(grids, x, y, radius=CLUTTER_RADIUS_M):
+    """90th-percentile height of trees and buildings (DOM minus DGM) in a square around each point."""
+    rows, cols = grids.index(np.asarray(x), np.asarray(y))
+    k = int(radius / 2)
+    out = []
+    for r, c in zip(np.atleast_1d(rows), np.atleast_1d(cols)):
+        w = (slice(max(r - k, 0), r + k + 1), slice(max(c - k, 0), c + k + 1))
+        out.append(float(np.nanpercentile((grids.dom[w] - grids.dgm[w]).astype(float), 90)))
+    return np.array(out)
+
+
+def candidates(demand, grids, mast_m=MAST_M, forest_hills=True, clear_canopy=False):
     to_ll = Transformer.from_crs(25832, 4326, always_xy=True)
     gw = pd.read_csv(SURVEY / 'gateways.csv', dtype={'id': str})
     gw = gw[gw.id.isin(PERIOD_GATEWAYS)]
@@ -96,7 +108,11 @@ def candidates(demand, grids, mast_m=MAST_M, forest_hills=True):
     grid = pd.DataFrame({'x': gx.ravel().astype(float), 'y': gy.ravel().astype(float)})
     grid = grid[near(grid.x, grid.y)].reset_index(drop=True)
     grid = grid.assign(site_id=['grid_%03d' % i for i in range(len(grid))], kind='grid', antenna_height=mast_m)
-    new = pd.concat([roofs, hills, grid], ignore_index=True)
+    masts = pd.concat([hills, grid], ignore_index=True)
+    masts['clutter_p90_m'] = clutter_p90(grids, masts.x, masts.y)
+    if clear_canopy:
+        masts = masts[masts.clutter_p90_m <= mast_m]
+    new = pd.concat([roofs, masts], ignore_index=True)
     new['longitude'], new['latitude'] = to_ll.transform(new.x.to_numpy(), new.y.to_numpy())
     return pd.concat([ex, new], ignore_index=True)
 
@@ -219,13 +235,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--mast-m', type=float, default=MAST_M, help='pole height on grid and high-point sites')
     ap.add_argument('--no-forest-hills', action='store_true', help='drop high points in WorldCover tree cover')
+    ap.add_argument('--clear-canopy', action='store_true',
+                    help=f'drop grid and high-point masts lower than the 90th-percentile trees and buildings within {CLUTTER_RADIUS_M} m')
     ap.add_argument('--out', type=Path, default=OUT)
     args = ap.parse_args()
     OUT = args.out if args.out.is_absolute() else ROOT / args.out
     OUT.mkdir(parents=True, exist_ok=True)
     grids = fv.Grids()
     demand = demand_cells()
-    sites = candidates(demand, grids, args.mast_m, not args.no_forest_hills)
+    sites = candidates(demand, grids, args.mast_m, not args.no_forest_hills, args.clear_canopy)
     sites.to_csv(OUT / 'candidate_sites.csv', index=False)
     demand.to_csv(OUT / 'demand_cells.csv', index=False)
     print('candidates:', sites.kind.value_counts().to_dict(), flush=True)
@@ -259,7 +277,7 @@ def main():
         'period': [START, END], 'gateways': PERIOD_GATEWAYS, 'model': FINAL, 'training_pairs': n_train,
         'demand_cells': len(demand), 'candidates': sites.kind.value_counts().to_dict(),
         'clipped_links': clipped, 'thresholds': THRESHOLDS, 'redundancy': REDUNDANCY,
-        'mast_height_m': args.mast_m, 'forest_high_points': not args.no_forest_hills, 'roof_mast_m': ROOF_MAST_M, 'roof_height_range_m': ROOF_RANGE,
+        'mast_height_m': args.mast_m, 'forest_high_points': not args.no_forest_hills, 'masts_clear_canopy': args.clear_canopy, 'roof_mast_m': ROOF_MAST_M, 'roof_height_range_m': ROOF_RANGE,
         'candidate_max_distance_to_demand_m': NEAR_DEMAND_M}, indent=2), encoding='utf-8')
     show = exp[exp.matrix == f'tau_{MAIN_THRESHOLD}'][['experiment', 'redundancy', 'sites', 'existing_used', 'new_used', 'covered_cells', 'optimal']]
     print(show.to_string(index=False), flush=True)

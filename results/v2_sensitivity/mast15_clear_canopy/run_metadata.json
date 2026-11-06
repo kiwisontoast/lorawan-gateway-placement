@@ -1,0 +1,47 @@
+{
+  "period": [
+    "2020-11-10",
+    "2021-01-26"
+  ],
+  "gateways": [
+    "015c",
+    "0172",
+    "01c6",
+    "06df",
+    "08d5",
+    "08fc",
+    "090e",
+    "0917"
+  ],
+  "model": [
+    "lgbm_mono",
+    "v2_full"
+  ],
+  "training_pairs": 162000,
+  "demand_cells": 392,
+  "candidates": {
+    "rooftop": 148,
+    "grid": 87,
+    "high_point": 16,
+    "existing": 8
+  },
+  "clipped_links": 111,
+  "thresholds": [
+    0.3,
+    0.5,
+    0.7
+  ],
+  "redundancy": [
+    1,
+    2
+  ],
+  "mast_height_m": 15.0,
+  "forest_high_points": true,
+  "masts_clear_canopy": true,
+  "roof_mast_m": 2.0,
+  "roof_height_range_m": [
+    10,
+    28
+  ],
+  "candidate_max_distance_to_demand_m": 1000
+}

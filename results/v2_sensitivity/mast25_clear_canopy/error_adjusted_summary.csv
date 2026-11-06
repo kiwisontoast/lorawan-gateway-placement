@@ -1,0 +1,9 @@
+redundancy,error_model,pool,existing_modelled_cells,existing_error_adjusted_mean,sites_to_match_modelled,sites_to_match_error_adjusted_mean,sites_for_95pct_confidence
+1,pooled,full_pool,368,373.5,3,6,6
+1,pooled,greenfield,368,373.5,3,6,7
+1,site,full_pool,368,375.3,3,6,10
+1,site,greenfield,368,375.3,3,6,7
+2,pooled,full_pool,278,301.9,3,5,5
+2,pooled,greenfield,278,301.9,3,5,5
+2,site,full_pool,278,306.3,3,5,7
+2,site,greenfield,278,306.3,3,5,7

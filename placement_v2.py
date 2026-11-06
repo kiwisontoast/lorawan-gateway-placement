@@ -3,7 +3,9 @@ scored by the physics-constrained LightGBM model, optimized with redundancy.
 
 Run after models_v2.py: python placement_v2.py, then python robustness_v2.py
 Scores are inferred, conditional reception scores, not delivery probabilities.
+Sensitivity runs: --mast-m 25, --no-forest-hills, each with its own --out.
 """
+import argparse
 import json
 import site
 from pathlib import Path
@@ -28,13 +30,14 @@ SURVEY = ROOT / 'data/lora-bonn/survey'
 THRESHOLDS = [0.3, 0.5, 0.7]
 MAIN_THRESHOLD = 0.5
 REDUNDANCY = [1, 2]
-MAST_M = 15.0          # hypothetical pole height for grid and high-point sites (inside 12-25 m training range)
+MAST_M = 15.0          # hypothetical pole height for grid and high-point sites (inside 12-30 m training range)
+TREE_COVER = 10        # WorldCover class
 ROOF_MAST_M = 2.0      # antenna above the highest LoD2 roof point
 ROOF_RANGE = (10, 28)  # roof height above ground: antenna stays within 12-30 m
 NEAR_DEMAND_M = 1000
 
 
-def candidates(demand, grids):
+def candidates(demand, grids, mast_m=MAST_M, forest_hills=True):
     to_ll = Transformer.from_crs(25832, 4326, always_xy=True)
     gw = pd.read_csv(SURVEY / 'gateways.csv', dtype={'id': str})
     gw = gw[gw.id.isin(PERIOD_GATEWAYS)]
@@ -82,12 +85,17 @@ def candidates(demand, grids):
             hills.append((grids.transform.c + (c0 + c + .5) * 2, grids.transform.f - (r0 + r + .5) * 2))
     hills = pd.DataFrame(hills, columns=['x', 'y'])
     hills = hills[near(hills.x, hills.y)].reset_index(drop=True)
-    hills = hills.assign(site_id=['hill_%03d' % i for i in range(len(hills))], kind='high_point', antenna_height=MAST_M)
+    row, col = grids.index(hills.x.to_numpy(), hills.y.to_numpy())
+    hills['landcover'] = grids.landcover[row, col]
+    # Ids are assigned before any drop so a hill keeps its id across scenarios.
+    hills = hills.assign(site_id=['hill_%03d' % i for i in range(len(hills))], kind='high_point', antenna_height=mast_m)
+    if not forest_hills:
+        hills = hills[hills.landcover != TREE_COVER]
     # Regular 1 km grid of masts.
     gx, gy = np.meshgrid(np.arange(360500, 374000, 1000), np.arange(5612500, 5632000, 1000))
     grid = pd.DataFrame({'x': gx.ravel().astype(float), 'y': gy.ravel().astype(float)})
     grid = grid[near(grid.x, grid.y)].reset_index(drop=True)
-    grid = grid.assign(site_id=['grid_%03d' % i for i in range(len(grid))], kind='grid', antenna_height=MAST_M)
+    grid = grid.assign(site_id=['grid_%03d' % i for i in range(len(grid))], kind='grid', antenna_height=mast_m)
     new = pd.concat([roofs, hills, grid], ignore_index=True)
     new['longitude'], new['latitude'] = to_ll.transform(new.x.to_numpy(), new.y.to_numpy())
     return pd.concat([ex, new], ignore_index=True)
@@ -207,10 +215,17 @@ def plot(demand, sites, a, designs, curve_rows):
 
 
 def main():
+    global OUT
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--mast-m', type=float, default=MAST_M, help='pole height on grid and high-point sites')
+    ap.add_argument('--no-forest-hills', action='store_true', help='drop high points in WorldCover tree cover')
+    ap.add_argument('--out', type=Path, default=OUT)
+    args = ap.parse_args()
+    OUT = args.out if args.out.is_absolute() else ROOT / args.out
     OUT.mkdir(parents=True, exist_ok=True)
     grids = fv.Grids()
     demand = demand_cells()
-    sites = candidates(demand, grids)
+    sites = candidates(demand, grids, args.mast_m, not args.no_forest_hills)
     sites.to_csv(OUT / 'candidate_sites.csv', index=False)
     demand.to_csv(OUT / 'demand_cells.csv', index=False)
     print('candidates:', sites.kind.value_counts().to_dict(), flush=True)
@@ -244,7 +259,7 @@ def main():
         'period': [START, END], 'gateways': PERIOD_GATEWAYS, 'model': FINAL, 'training_pairs': n_train,
         'demand_cells': len(demand), 'candidates': sites.kind.value_counts().to_dict(),
         'clipped_links': clipped, 'thresholds': THRESHOLDS, 'redundancy': REDUNDANCY,
-        'mast_height_m': MAST_M, 'roof_mast_m': ROOF_MAST_M, 'roof_height_range_m': ROOF_RANGE,
+        'mast_height_m': args.mast_m, 'forest_high_points': not args.no_forest_hills, 'roof_mast_m': ROOF_MAST_M, 'roof_height_range_m': ROOF_RANGE,
         'candidate_max_distance_to_demand_m': NEAR_DEMAND_M}, indent=2), encoding='utf-8')
     show = exp[exp.matrix == f'tau_{MAIN_THRESHOLD}'][['experiment', 'redundancy', 'sites', 'existing_used', 'new_used', 'covered_cells', 'optimal']]
     print(show.to_string(index=False), flush=True)

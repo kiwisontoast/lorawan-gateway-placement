@@ -11,6 +11,7 @@ Run after placement_v2.py. Two error models perturb each design's binary matrix:
 The same perturbation is applied to existing gateways, i.e. every site is treated
 as if the model had never seen it, which is the fair basis for comparison.
 """
+import argparse
 from pathlib import Path
 
 import matplotlib
@@ -24,13 +25,14 @@ from optimize_v2 import solve_cover
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / 'results/v2_placement'
+PROFILES = ROOT / 'results/v2_models/footprint_metrics.csv'
 THRESHOLD = 0.5
 SIMS = 2000
 K_MAX = 10
 
 
-def gateway_profiles():
-    f = pd.read_csv(ROOT / 'results/v2_models/footprint_metrics.csv', dtype={'held_out_gateway': str})
+def gateway_profiles(path=PROFILES):
+    f = pd.read_csv(path, dtype={'held_out_gateway': str})
     f = f[(f.model == FINAL[0]) & (f.features == FINAL[1]) & (f.prediction_basis == 'rep_p')].copy()
     tp = f.precision * f.predicted_covered
     fn = f.observed_covered - tp
@@ -56,11 +58,20 @@ def simulate(sub, r, profiles, pooled, rng, mode):
 
 
 def main():
-    z = np.load(OUT / 'score_matrix.npz')
+    global OUT
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--out', type=Path, default=OUT, help='placement_v2.py output folder to read (and write)')
+    ap.add_argument('--profiles', type=Path, default=PROFILES, help='footprint metrics giving the error profiles')
+    ap.add_argument('--write-to', type=Path, help='folder for the outputs, if not --out')
+    args = ap.parse_args()
+    absolute = lambda p: p if p.is_absolute() else ROOT / p
+    z = np.load(absolute(args.out) / 'score_matrix.npz')
+    OUT = absolute(args.write_to or args.out)
+    OUT.mkdir(parents=True, exist_ok=True)
     a = z['scores'] >= THRESHOLD
     kinds = np.array([s.split('_')[0] for s in z['site_ids']])
     existing = kinds == 'existing'
-    profiles, pooled = gateway_profiles()
+    profiles, pooled = gateway_profiles(absolute(args.profiles))
     rng = np.random.default_rng(11)
     rows = []
     for r in (1, 2):

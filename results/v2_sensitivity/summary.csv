@@ -1,25 +1,33 @@
-mast,high_points,error_profiles,redundancy,pool,p_beats_existing_k5,p_beats_existing_k6,p_beats_existing_k7,p_beats_existing_k8,folder
-15 m masts (reported),all,leave_one_gateway_out,1,full_pool,0.527,0.780,0.814,0.882,results/v2_sensitivity/baseline_check
-15 m masts (reported),all,leave_one_gateway_out,1,greenfield,0.552,0.631,0.809,0.864,results/v2_sensitivity/baseline_check
-15 m masts (reported),all,leave_one_gateway_out,2,full_pool,0.728,0.936,0.972,0.986,results/v2_sensitivity/baseline_check
-15 m masts (reported),all,leave_one_gateway_out,2,greenfield,0.763,0.906,0.957,0.988,results/v2_sensitivity/baseline_check
-25 m masts,all,leave_one_gateway_out,1,full_pool,0.498,0.827,0.882,0.933,results/v2_sensitivity/mast25
-25 m masts,all,leave_one_gateway_out,1,greenfield,0.640,0.734,0.773,0.774,results/v2_sensitivity/mast25
-25 m masts,all,leave_one_gateway_out,2,full_pool,0.761,0.937,0.989,0.989,results/v2_sensitivity/mast25
-25 m masts,all,leave_one_gateway_out,2,greenfield,0.778,0.934,0.969,0.980,results/v2_sensitivity/mast25
-15 m masts,non-forest only,leave_one_gateway_out,1,full_pool,0.445,0.742,0.781,0.801,results/v2_sensitivity/no_forest_hills
-15 m masts,non-forest only,leave_one_gateway_out,1,greenfield,0.517,0.548,0.780,0.754,results/v2_sensitivity/no_forest_hills
-15 m masts,non-forest only,leave_one_gateway_out,2,full_pool,0.623,0.869,0.919,0.930,results/v2_sensitivity/no_forest_hills
-15 m masts,non-forest only,leave_one_gateway_out,2,greenfield,0.414,0.756,0.920,0.927,results/v2_sensitivity/no_forest_hills
-25 m masts,non-forest only,leave_one_gateway_out,1,full_pool,0.624,0.610,0.845,0.878,results/v2_sensitivity/mast25_no_forest_hills
-25 m masts,non-forest only,leave_one_gateway_out,1,greenfield,0.485,0.609,0.729,0.833,results/v2_sensitivity/mast25_no_forest_hills
-25 m masts,non-forest only,leave_one_gateway_out,2,full_pool,0.674,0.902,0.958,0.985,results/v2_sensitivity/mast25_no_forest_hills
-25 m masts,non-forest only,leave_one_gateway_out,2,greenfield,0.606,0.882,0.880,0.957,results/v2_sensitivity/mast25_no_forest_hills
-15 m masts (reported),all,blocked,1,full_pool,0.486,0.763,0.802,0.871,results/v2_spatial_cv/error_adjusted_baseline
-15 m masts (reported),all,blocked,1,greenfield,0.512,0.601,0.804,0.849,results/v2_spatial_cv/error_adjusted_baseline
-15 m masts (reported),all,blocked,2,full_pool,0.731,0.935,0.973,0.986,results/v2_spatial_cv/error_adjusted_baseline
-15 m masts (reported),all,blocked,2,greenfield,0.775,0.904,0.957,0.989,results/v2_spatial_cv/error_adjusted_baseline
-15 m masts,non-forest only,blocked,1,full_pool,0.399,0.730,0.760,0.791,results/v2_spatial_cv/error_adjusted_no_forest_hills
-15 m masts,non-forest only,blocked,1,greenfield,0.497,0.516,0.767,0.741,results/v2_spatial_cv/error_adjusted_no_forest_hills
-15 m masts,non-forest only,blocked,2,full_pool,0.623,0.872,0.922,0.932,results/v2_spatial_cv/error_adjusted_no_forest_hills
-15 m masts,non-forest only,blocked,2,greenfield,0.401,0.760,0.918,0.927,results/v2_spatial_cv/error_adjusted_no_forest_hills
+mast,high_points,masts_clear_canopy,error_profiles,redundancy,pool,existing_error_adjusted_mean,p_beats_existing_k5,p_beats_existing_k6,p_beats_existing_k7,p_beats_existing_k8,mean_cells_k6,mean_cells_k7,mean_cells_k8,folder
+15 m,all,no,leave_one_gateway_out,1,full_pool,374.813,0.527,0.780,0.814,0.882,380.000,380.964,383.474,results/v2_sensitivity/baseline_check
+15 m,all,no,leave_one_gateway_out,1,greenfield,374.813,0.552,0.631,0.809,0.864,374.401,380.998,382.736,results/v2_sensitivity/baseline_check
+15 m,all,no,leave_one_gateway_out,2,full_pool,308.188,0.728,0.936,0.972,0.986,346.843,356.193,364.760,results/v2_sensitivity/baseline_check
+15 m,all,no,leave_one_gateway_out,2,greenfield,308.188,0.763,0.906,0.957,0.988,342.495,353.099,363.160,results/v2_sensitivity/baseline_check
+25 m,all,no,leave_one_gateway_out,1,full_pool,374.939,0.498,0.827,0.882,0.933,381.522,383.435,385.587,results/v2_sensitivity/mast25
+25 m,all,no,leave_one_gateway_out,1,greenfield,374.939,0.640,0.734,0.773,0.774,378.121,379.323,379.455,results/v2_sensitivity/mast25
+25 m,all,no,leave_one_gateway_out,2,full_pool,307.330,0.761,0.937,0.989,0.989,348.808,364.871,366.423,results/v2_sensitivity/mast25
+25 m,all,no,leave_one_gateway_out,2,greenfield,307.330,0.778,0.934,0.969,0.980,348.275,356.374,364.524,results/v2_sensitivity/mast25
+15 m,non-forest only,no,leave_one_gateway_out,1,full_pool,374.813,0.445,0.742,0.781,0.801,378.824,380.012,380.695,results/v2_sensitivity/no_forest_hills
+15 m,non-forest only,no,leave_one_gateway_out,1,greenfield,374.813,0.517,0.548,0.780,0.754,371.598,379.932,378.956,results/v2_sensitivity/no_forest_hills
+15 m,non-forest only,no,leave_one_gateway_out,2,full_pool,308.188,0.623,0.869,0.919,0.930,337.995,345.874,350.866,results/v2_sensitivity/no_forest_hills
+15 m,non-forest only,no,leave_one_gateway_out,2,greenfield,308.188,0.414,0.756,0.920,0.927,326.724,344.692,350.046,results/v2_sensitivity/no_forest_hills
+25 m,non-forest only,no,leave_one_gateway_out,1,full_pool,374.714,0.624,0.610,0.845,0.878,374.212,382.243,383.132,results/v2_sensitivity/mast25_no_forest_hills
+25 m,non-forest only,no,leave_one_gateway_out,1,greenfield,374.714,0.485,0.609,0.729,0.833,374.238,378.219,382.070,results/v2_sensitivity/mast25_no_forest_hills
+25 m,non-forest only,no,leave_one_gateway_out,2,full_pool,307.260,0.674,0.902,0.958,0.985,342.077,350.454,361.361,results/v2_sensitivity/mast25_no_forest_hills
+25 m,non-forest only,no,leave_one_gateway_out,2,greenfield,307.260,0.606,0.882,0.880,0.957,338.714,340.616,354.499,results/v2_sensitivity/mast25_no_forest_hills
+15 m,all,yes,leave_one_gateway_out,1,full_pool,374.939,0.361,0.655,0.802,0.724,375.200,380.623,378.161,results/v2_sensitivity/mast15_clear_canopy
+15 m,all,yes,leave_one_gateway_out,1,greenfield,374.939,0.508,0.628,0.761,0.920,374.901,379.380,384.543,results/v2_sensitivity/mast15_clear_canopy
+15 m,all,yes,leave_one_gateway_out,2,full_pool,307.330,0.474,0.737,0.947,0.960,324.736,348.103,355.416,results/v2_sensitivity/mast15_clear_canopy
+15 m,all,yes,leave_one_gateway_out,2,greenfield,307.330,0.435,0.700,0.876,0.944,319.753,337.791,349.209,results/v2_sensitivity/mast15_clear_canopy
+25 m,all,yes,leave_one_gateway_out,1,full_pool,375.332,0.605,0.813,0.674,0.746,381.418,377.004,379.794,results/v2_sensitivity/mast25_clear_canopy
+25 m,all,yes,leave_one_gateway_out,1,greenfield,375.332,0.624,0.721,0.962,0.962,378.541,387.021,386.993,results/v2_sensitivity/mast25_clear_canopy
+25 m,all,yes,leave_one_gateway_out,2,full_pool,306.338,0.771,0.907,0.955,0.975,342.171,354.396,360.293,results/v2_sensitivity/mast25_clear_canopy
+25 m,all,yes,leave_one_gateway_out,2,greenfield,306.338,0.814,0.904,0.956,0.963,341.983,353.384,357.575,results/v2_sensitivity/mast25_clear_canopy
+15 m,all,no,blocked,1,full_pool,374.252,0.486,0.763,0.802,0.871,379.288,380.392,382.909,results/v2_spatial_cv/error_adjusted_baseline
+15 m,all,no,blocked,1,greenfield,374.252,0.512,0.601,0.804,0.849,373.406,380.372,382.174,results/v2_spatial_cv/error_adjusted_baseline
+15 m,all,no,blocked,2,full_pool,306.178,0.731,0.935,0.973,0.986,345.087,354.635,363.314,results/v2_spatial_cv/error_adjusted_baseline
+15 m,all,no,blocked,2,greenfield,306.178,0.775,0.904,0.957,0.989,340.574,351.169,361.796,results/v2_spatial_cv/error_adjusted_baseline
+15 m,non-forest only,no,blocked,1,full_pool,374.252,0.399,0.730,0.760,0.791,377.991,379.190,380.068,results/v2_spatial_cv/error_adjusted_no_forest_hills
+15 m,non-forest only,no,blocked,1,greenfield,374.252,0.497,0.516,0.767,0.741,370.602,379.275,378.293,results/v2_spatial_cv/error_adjusted_no_forest_hills
+15 m,non-forest only,no,blocked,2,full_pool,306.178,0.623,0.872,0.922,0.932,335.873,344.100,348.832,results/v2_spatial_cv/error_adjusted_no_forest_hills
+15 m,non-forest only,no,blocked,2,greenfield,306.178,0.401,0.760,0.918,0.927,324.339,342.796,348.118,results/v2_spatial_cv/error_adjusted_no_forest_hills

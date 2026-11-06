@@ -15,6 +15,7 @@ results/*/held_out_predictions.csv
 results/bonn_terrain/terrain_features.csv
 results/bonn_geoai/model.joblib
 results/**/*.log
+results/site_audit/photos/
 
 # Project-local Python packages (187 MB) and caches
 .geo_deps/

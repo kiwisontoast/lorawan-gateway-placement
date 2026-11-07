@@ -21,3 +21,6 @@ results/site_audit/photos/
 .geo_deps/
 __pycache__/
 *.pyc
+
+# Inter font files for figures_v2.py (OFL; from github.com/rsms/inter releases)
+.fonts/

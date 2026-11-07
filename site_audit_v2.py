@@ -7,7 +7,7 @@ zero 2.0) of each. The photos are judged by eye; the judgements live in
 results/site_audit/verdicts.csv and are merged into site_audit.csv.
 
 Run after placement_v2.py for each scenario:
-    python site_audit_v2.py baseline_check mast25 mast15_clear_canopy mast25_clear_canopy
+    python site_audit_v2.py baseline_check mast25 no_forest_hills mast15_clear_canopy mast25_clear_canopy
 """
 import site
 import sys
@@ -112,4 +112,4 @@ def main(scenarios):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:] or ['baseline_check', 'mast25', 'mast15_clear_canopy', 'mast25_clear_canopy'])
+    main(sys.argv[1:] or ['baseline_check', 'mast25', 'no_forest_hills', 'mast15_clear_canopy', 'mast25_clear_canopy'])

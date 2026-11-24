@@ -8,7 +8,7 @@ A gateway is the receiver, usually on a roof or mast, that collects messages fro
 
 The question was whether a machine-learned coverage model could plan a LoRaWAN network that covers a city with fewer gateways than the one the city built. The model is LightGBM, trained on 131,057 receptions in Bonn, Germany, with features from 1 m terrain and surface models, 3D buildings, 2020 land cover, and Fresnel-zone and diffraction physics. An integer program chooses sites for single or double coverage.
 
-- Single coverage: taken at face value, the model says three new sites on Bonn's high ground cover as many measured road cells as the existing eight gateways. With the error the model shows at sites it has never seen applied, matching the existing network takes six or seven sites on average, and even eight beat it only 86-88% of the time. There is no robust saving.
+- Single coverage: taken at face value, the model says three new sites on Bonn's high ground cover as many measured road cells as the existing eight gateways. With the error the model shows at sites it has never seen applied, matching the existing network takes six or seven sites on average, and even eight beat it only 72-96% of the time, depending on the scenario (Section 3.5). There is no robust saving.
 - Double coverage: only 71% of cells are heard by two or more of the existing eight. Counting only masts that clear the local tree canopy, seven gateways (three of today's eight plus four rooftop antennas) double-cover more cells than the existing eight with 95% probability after the error adjustment, 348 cells on average against 307.
 
 The conclusion: a terrain-, building- and vegetation-aware coverage model indicates that Bonn's gateways were sited for basic reach, not resilience. Moving a similar number of gateways to high ground would substantially improve redundant coverage, while cutting the gateway count for basic coverage is within the model's error.
@@ -85,6 +85,8 @@ The selected new sites are mostly on Bonn's high ground (Venusberg and the Enner
 
 The placement numbers above trust the model completely. To see how much that matters, each design was perturbed 2,000 times, giving every site the held-out error profile of a randomly chosen real gateway, with the same treatment for existing and new sites.
 
+The table is for the baseline candidate set (15 m masts, surrounding canopy not checked). Section 3.5 repeats it under other assumptions, and Section 3.6 gives the headline with the canopy rule.
+
 | | Existing 8 (error-adjusted mean) | Sites to match on average | Chance that 6 / 8 sites beat the existing 8 |
 |---|---:|---:|---:|
 | Single coverage | 375 cells | 6 (mixed) / 7 (new only) | 63-78% / 86-88% |
@@ -110,7 +112,7 @@ Each scenario reruns placement and the error adjustment. The table gives the cha
 - Forested high points: most bare-ground high points are in WorldCover tree cover, where a 15 m mast would sit below the canopy. Without them the optimizer switches to grid masts and rooftops; the redundancy advantage holds but needs about one more site. With 25 m masts most of the gap is recovered, and no high point is selected at all.
 - Spatially blocked validation (`spatial_cv_v2.py`): leave-one-gateway-out lets the held-out gateway's test packets share truck positions with training packets heard by other gateways. Also holding out 2 km blocks, with a 500 m buffer dropped from training, lowers mean AUC on the period table from 0.912 to 0.902. The footprint test barely moves (precision 0.802 to 0.794, recall 0.706 to 0.710), so the error adjustment is unchanged. The exception is 06df, the 55 m tower, whose AUC falls from 0.82 to 0.76: for sites unlike the training gateways, part of the model's skill comes from having seen nearby positions.
 
-Single coverage stays within the error in every scenario: even eight sites beat the existing network only 74-93% of the time. Removing forested high points alone turned out not to be enough (Section 3.6). All figures are in `results/v2_sensitivity/summary.csv` and `results/v2_spatial_cv/`.
+Single coverage stays within the error in every scenario: even eight sites beat the existing network only 72-96% of the time. Removing forested high points alone turned out not to be enough (Section 3.6). All figures are in `results/v2_sensitivity/summary.csv` and `results/v2_spatial_cv/`.
 
 ### 3.6 Aerial check and the canopy rule
 

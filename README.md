@@ -23,7 +23,7 @@ Methods, every number and the robustness checks are in [docs/results.md](docs/re
 | Double coverage, after model error: 7 gateways (3 existing + 4 rooftops) vs. existing 8 | 348 vs. 307 cells; better in 95% of 2,000 simulations |
 | Same, new sites only | 7 sites 88%, 8 sites 94% |
 | Same, with 25 m masts allowed | 6 sites, 90-91% |
-| Single coverage, after model error | no robust saving; even 8 sites beat the existing network only 74-93% of the time |
+| Single coverage, after model error | no robust saving; even 8 sites beat the existing network only 72-96% of the time, depending on the scenario |
 
 The headline only counts masts that clear the surrounding tree canopy, and every chosen site was checked against aerial photos ([docs/results.md](docs/results.md) Section 3.6, photos in `results/site_audit/`).
 
